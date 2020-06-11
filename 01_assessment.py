@@ -14,9 +14,6 @@ def num_checker(question, low, high):
         except ValueError:
             print("You did not enter a number, try again")
 
-yellow = "yellow"
-pink = "pink"
-blue = "blue"
 
 # chose_answer = num_checker("1) {}\n2) {}\n3) {}\nAnswer: ".format(yellow, pink, blue), 1, 3)
 chose_answer = num_checker("1, 2 or 3? ", 1, 3)
