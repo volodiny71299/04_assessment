@@ -1,51 +1,41 @@
-# Component six, puts options in random order
+# Rounds
+import random
+# Number checker for rounds, 
 
-questions = \
-{
-    "What is the global warming controversy about?": {
-        "A": "the public debate over whether global warming is occuring",
-        "B": "how much global warming has occured in modern times",
-        "C": "what global warming has caused",
-        "D": "all of the above"
-    },
-    "What movie was used to publicize the controversial issue of global warming?": {
-        "A": "the bitter truth",
-        "B": "destruction of mankind",
-        "C": "the inconvenient truth",
-        "D": "the depletion"
-    },
-    "In what year did former Vice President Al Gore and a U.N. network of scientists share the Nobel Peace Prize?": {
-        "A": "1996",
-        "B": "1998",
-        "C": "2003",
-        "D": "2007"
-    },
-    "Many European countries took action to reduce greenhouse gas before what year?": {
-        "A": "1985",
-        "B": "1990",
-        "C": "1759",
-        "D": "2000"
-    },
-    "Who first proposed the theory that increases in greenhouse gas would lead to an increase in temperature?": {
-        "A": "Svante Arrhenius",
-        "B": "Niccolo Machiavelli",
-        "C": "Jared Bayless",
-        "D": "Jacob Thornton"
-    }
-}
 
-print("\nGlobal Warming Facts Quiz")
-prompt = ">>> "
-correct_options = ['D', 'C', 'D', 'B', 'A']
-score_count = 0
+def int_check(question, low, high):
+    valid = False
+    while not valid:
+        try:
+            response = int(input(question))
+            if low <= response <= high:
+                valid = True
+                return response
+            else:
+                print("You did not enter a number between {} and {}".format(low, high))
+        except ValueError:
+            print("Invalid input")
 
-for question, options in questions.items():
-    print("\n", question, "\n")
-    for option, answer in options.items():
-        print(option, ":", answer)
-    print("\nWhat's your answer?")
-    choice = str(input(prompt))
-    for correct_option in correct_options:
-        if choice.upper() == correct_option:
-            score_count += 1
-print(score_count)
+
+round_counter = 0
+rounds_won = 0
+
+keep_going = ""
+while keep_going == "":
+    rounds = int_check("How long do you want your quiz to be?\n(20 questions max)\n>>> ", 1, 20)
+    while round_counter < rounds:
+        a = round(random.uniform(1, 100), 2)
+        b = round(random.uniform(1, 100), 2)
+
+        total = round(a + b, 2)
+        print("a = {}".format(a))
+        print("b = {}".format(b))
+        print(total)
+        round_counter += 1
+        print("Round ({})".format(round_counter))
+        answer = float(input("Whats {:.2f} + {:.2f} = ".format(a, b)))
+        if answer == total:
+            print("Correct")
+            rounds_won += 1
+        else:
+            print("You lose answer was - {:.2f}".format(a + b))

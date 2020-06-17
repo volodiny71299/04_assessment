@@ -1,34 +1,20 @@
-# Component three, PRINT ANSWER options
+# Component three, round counter
 
 import random
 
+rounds_won = 0
 
-def num_checker(question, low, high):
-    valid = False
-    while not valid:
-        try:
-            response = int(input(question))
+round_counter = 0
 
-            if low <= response <= high:
-                return response
-            else:
-                print("You did not enter 1, 2 or 3")
-        except ValueError:
-            print("You did not enter a number, try again")
+a = round(random.uniform(1, 100), 2)
+b = round(random.uniform(1, 100), 2)
 
-secret_one = float(random.uniform(100, 10000))
-print("Number (1): {:.2f}".format(secret_one))
+total = a + b
 
-secret_two = float(random.uniform(100, 10000))
-print("Number (2): {:.2f}".format(secret_two))
-
-if secret_one > secret_two:
-    print("{:.2f} - {:.2f} = {:.2f}".format(secret_one, secret_two, secret_one - secret_two))
+print(total)
+answer = float(input("Whats {:.2f} + {:.2f} = ".format(a, b)))
+if answer == total:
+    print("Correct")
+    round_counter += 1
 else:
-    print("{:.2f} + {:.2f} = {:.2f}".format(secret_one, secret_two, secret_one + secret_two))
-
-
-chosen_answer = num_checker("1)\n2)\n3)\n", 1, 3)
-
-print()
-print("Your answer is {}".format(chosen_answer))
+    print("You lose answer was - {:.2f}".format(a + b))
